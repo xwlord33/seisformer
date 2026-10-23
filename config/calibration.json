@@ -1,0 +1,19 @@
+{
+  "alpha": 0.1,
+  "checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "snapshot_sha256": "b19c3d696e387257793b470196af58e7dcfcb3081318cb4af3f447685db4d996",
+  "split": "cal",
+  "rows": 127623,
+  "scope": "Unconditional argmax residuals of annotated phases; not conditional on accepted detections.",
+  "caveat": "Event-group exchangeability is assumed but not guaranteed across sources.",
+  "P": {
+    "n": 93896,
+    "radius_s": 0.2964697265625,
+    "coverage_on_cal": 0.900017040129505
+  },
+  "S": {
+    "n": 78212,
+    "radius_s": 0.360469970703125,
+    "coverage_on_cal": 0.9000153429141309
+  }
+}

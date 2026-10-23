@@ -1,0 +1,100 @@
+{
+  "model": "SeisFormer dual-domain P/S, 1M, seed42, detection-selected",
+  "checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "selected_epoch": 17,
+  "test_rows": 127940,
+  "evaluated_known_windows": 116420,
+  "excluded_unknown_event_crops": 11520,
+  "detection_threshold": 0.5,
+  "detection": {
+    "tp": 98049,
+    "fp": 86,
+    "fn": 159,
+    "precision": 0.9991236561879044,
+    "recall": 0.9983809872922776,
+    "f1": 0.9987521836785626
+  },
+  "detection_noise_fpr": 0.0047221612123874365,
+  "P": {
+    "annotated_n": 94278,
+    "mae_s": 0.2664512290413205,
+    "rmse_s": 2.258289520511168,
+    "bias_s": 0.04225257687894487,
+    "unconditional_recall": {
+      "0.1": 0.8194170432126265,
+      "0.3": 0.9084622075139481,
+      "0.5": 0.937663081524852
+    },
+    "picking_at_0.3": {
+      "tolerance_s": 0.3,
+      "tp": 85591,
+      "fp": 8615,
+      "fn": 8687,
+      "precision": 0.9085514723053734,
+      "recall": 0.9078576125925455,
+      "f1": 0.9082044099233887,
+      "noise_false_positive_rate": 0.0047221612123874365
+    },
+    "picking_at_0.5": {
+      "tolerance_s": 0.3,
+      "tp": 85590,
+      "fp": 8602,
+      "fn": 8688,
+      "precision": 0.9086758960421267,
+      "recall": 0.9078470056640998,
+      "f1": 0.9082612617392688,
+      "noise_false_positive_rate": 0.004557434658466945
+    }
+  },
+  "S": {
+    "annotated_n": 79255,
+    "mae_s": 0.2159498568871715,
+    "rmse_s": 1.4573877437270981,
+    "bias_s": 0.013049787606435517,
+    "unconditional_recall": {
+      "0.1": 0.7284966248186234,
+      "0.3": 0.8802094505078544,
+      "0.5": 0.9277395747902341
+    },
+    "picking_at_0.3": {
+      "tolerance_s": 0.3,
+      "tp": 69721,
+      "fp": 9514,
+      "fn": 9534,
+      "precision": 0.8799268000252414,
+      "recall": 0.8797047504889282,
+      "f1": 0.8798157612467663,
+      "noise_false_positive_rate": 0.004282890401932792
+    },
+    "picking_at_0.5": {
+      "tolerance_s": 0.3,
+      "tp": 69718,
+      "fp": 9508,
+      "fn": 9537,
+      "precision": 0.8799888925352788,
+      "recall": 0.8796668979875086,
+      "f1": 0.8798278658009477,
+      "noise_false_positive_rate": 0.0041181638480122995
+    }
+  },
+  "conformal": {
+    "P": {
+      "n": 94278,
+      "radius_s": 0.2964697265625,
+      "coverage": 0.9070833068160122,
+      "unclipped_interval_width_s": 0.592939453125
+    },
+    "S": {
+      "n": 79255,
+      "radius_s": 0.360469970703125,
+      "coverage": 0.8992114062204277,
+      "unclipped_interval_width_s": 0.72093994140625
+    }
+  },
+  "closest_alternative": {
+    "checkpoint": "alternatives/PPAA_1M/best_detection.pt",
+    "P_mae_s": 0.26288482902315,
+    "S_mae_s": 0.2143518029517928,
+    "detection_f1": 0.998629725282842
+  }
+}

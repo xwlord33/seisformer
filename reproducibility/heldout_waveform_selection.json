@@ -1,0 +1,88 @@
+{
+  "prediction_file": "outputs\\standardized_dual_1m_20ep\\eval_test_det\\test_predictions.npz",
+  "prediction_sha256": "e7e083db0de32342bb455c358153f718b793e1d7533330a5f4501d77c71e0a82",
+  "primary_checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "test_records": 127940,
+  "source_collections": [
+    "STEAD",
+    "TXED",
+    "PNW"
+  ],
+  "examples": [
+    {
+      "source": "STEAD",
+      "test_row": 81787,
+      "event_group": "90bb9ec693eee3f37df475ff",
+      "shard": "F:\\data_re\\shards\\STEAD_merge\\part00146",
+      "shard_row": 3975,
+      "crop_start": 0,
+      "reference_s": [
+        5.0,
+        18.200000762939453
+      ],
+      "prediction_s": [
+        4.99,
+        18.17
+      ],
+      "errors_s": [
+        0.01,
+        0.03
+      ],
+      "eligible_count": 50581,
+      "selection": "Median summed P/S absolute error among source test crops with both labels between 4 and 54 seconds; ties by test row",
+      "split": "test",
+      "reader_matches_saved_truth": true
+    },
+    {
+      "source": "TXED",
+      "test_row": 35376,
+      "event_group": "43937767c9c87b3b9cb2e973",
+      "shard": "F:\\data_re\\shards\\TXED_TXED\\part00112",
+      "shard_row": 875,
+      "crop_start": 0,
+      "reference_s": [
+        8.579999923706055,
+        13.34000015258789
+      ],
+      "prediction_s": [
+        8.44,
+        13.32
+      ],
+      "errors_s": [
+        0.14,
+        0.02
+      ],
+      "eligible_count": 10956,
+      "selection": "Median summed P/S absolute error among source test crops with both labels between 4 and 54 seconds; ties by test row",
+      "split": "test",
+      "reader_matches_saved_truth": true
+    },
+    {
+      "source": "PNW",
+      "test_row": 45213,
+      "event_group": "b27171c4c1defe5ff43b18d0",
+      "shard": "F:\\data_re\\shards\\PNW_PNW\\part00033",
+      "shard_row": 119,
+      "crop_start": 131,
+      "reference_s": [
+        50.68000030517578,
+        52.34000015258789
+      ],
+      "prediction_s": [
+        50.67,
+        52.31
+      ],
+      "errors_s": [
+        0.01,
+        0.03
+      ],
+      "eligible_count": 4526,
+      "selection": "Median summed P/S absolute error among source test crops with both labels between 4 and 54 seconds; ties by test row",
+      "split": "test",
+      "reader_matches_saved_truth": true
+    }
+  ],
+  "source_data": "Existing frozen project test partition and unchanged primary predictions",
+  "new_training": false,
+  "new_model_evaluation": false
+}

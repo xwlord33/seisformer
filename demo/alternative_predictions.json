@@ -1,0 +1,31 @@
+{
+  "checkpoint_sha256": "36cc0250496bd2df79b72be98c55ae5ae535e5bbe3a0fc0bcef64d8c2bee27ac",
+  "sample_rate_hz": 100,
+  "component_order": "ENZ",
+  "event_threshold": 0.5,
+  "phase_threshold": 0.3,
+  "mode": "fixed_60s_windows",
+  "predictions": [
+    {
+      "index": 0,
+      "record_valid": true,
+      "event_probability": 0.03717361390590668,
+      "event_accepted": false,
+      "phases": {
+        "P": {
+          "candidate_time_s": 16.6,
+          "peak_probability": 0.6453514099121094,
+          "accepted": false,
+          "time_s": null
+        },
+        "S": {
+          "candidate_time_s": 30.57,
+          "peak_probability": 0.7015793323516846,
+          "accepted": false,
+          "time_s": null
+        }
+      }
+    }
+  ],
+  "interval_scope": "Historical marginal CAL radius, not a calibrated conditional or new-domain coverage guarantee."
+}

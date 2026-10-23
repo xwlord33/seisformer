@@ -1,0 +1,49 @@
+{
+  "args": {
+    "data": "F:/data_re",
+    "output": "F:/model/model_2/outputs/standardized_dual_1m_20ep",
+    "train_limit": 1048576,
+    "val_limit": 4096,
+    "batch_size": 64,
+    "epochs": 20,
+    "lr": 0.0001,
+    "seed": 42,
+    "workers": 3,
+    "device": "cuda",
+    "init_checkpoint": "F:/model/model_2/outputs/standardized_dual_expanded_524k/best.pt",
+    "balance_train": true,
+    "mask_input": false,
+    "dual": true,
+    "rows": null,
+    "arch": "seisformer",
+    "snapshot": "F:/model/model_2/outputs/standardized_expanded_full/snapshot.json",
+    "val_rows": "F:/model/model_2/outputs/old_val_rows.json",
+    "event_fraction": 0.72
+  },
+  "model": {
+    "dim": 96,
+    "layers": 3,
+    "heads": 4,
+    "wavelet": true,
+    "stft": true,
+    "polarization": false,
+    "scales": 12,
+    "sample_rate": 100,
+    "mask_input": false
+  },
+  "initialization": {
+    "checkpoint": "F:\\model\\model_2\\outputs\\standardized_dual_expanded_524k\\best.pt",
+    "sha256": "2a5e23504fba67ae04b16e32d0d1c5dab519a41a4872851147baf764d2675dc9",
+    "mode": "warm_start_weights; fresh optimizer and scheduler"
+  },
+  "train_rows": 1048576,
+  "val_rows": 16384,
+  "snapshot_shards": 2446,
+  "snapshot_sha256": "b19c3d696e387257793b470196af58e7dcfcb3081318cb4af3f447685db4d996",
+  "limitations": [
+    "Partial data snapshot is biased by source conversion order.",
+    "Model input has masked zero fill; loss and prediction argmax exclude invalid times, no mask-aware attention architecture.",
+    "Metrics are a fixed validation subset, not an independent test or deployment result.",
+    "No old mixed-rate model weights loaded; no test/cal/GX evaluation."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "dim": 96,
+  "layers": 3,
+  "heads": 4,
+  "wavelet": true,
+  "stft": true,
+  "polarization": false,
+  "gabor": false,
+  "scales": 12,
+  "sample_rate": 100,
+  "mask_input": false
+}

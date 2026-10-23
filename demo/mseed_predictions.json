@@ -1,0 +1,17 @@
+{
+  "checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "sample_rate_hz": 100,
+  "component_order": "ENZ",
+  "event_threshold": 0.5,
+  "phase_threshold": 0.3,
+  "mode": "label_free_sliding_windows",
+  "duration_s": 60.0,
+  "event_probability": 0.0012850735802203417,
+  "event_accepted": false,
+  "candidates": [],
+  "emitted_events": [],
+  "raw_candidate_clusters": 1,
+  "min_support": 1,
+  "fallback": false,
+  "scope": "Waveform-only sliding inference. No catalogue/true pick selects candidates. Historical challenge scores used a different truth-assisted matching step."
+}

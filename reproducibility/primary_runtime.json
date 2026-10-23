@@ -1,0 +1,83 @@
+{
+  "checkpoint": "F:\\model\\model_2\\best_model_archive\\SeisFormer_PS_1M_s42_20261020\\weights\\best_detection.pt",
+  "checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "weights_loaded_strictly": true,
+  "params": 428774,
+  "config": {
+    "dim": 96,
+    "layers": 3,
+    "heads": 4,
+    "wavelet": true,
+    "stft": true,
+    "polarization": false,
+    "scales": 12,
+    "sample_rate": 100,
+    "mask_input": false
+  },
+  "head": "legacy-P/S",
+  "benchmarks": [
+    {
+      "device": "cuda",
+      "batch": 1,
+      "length": 6000,
+      "seconds_per_batch": 0.0041845783339037245,
+      "ms_per_window": 4.184578333903724,
+      "windows_per_second": 238.97270410687148,
+      "autocast": "fp32"
+    },
+    {
+      "device": "cuda",
+      "batch": 1,
+      "length": 6000,
+      "seconds_per_batch": 0.005220759999550258,
+      "ms_per_window": 5.220759999550258,
+      "windows_per_second": 191.54299375687543,
+      "autocast": "bf16"
+    },
+    {
+      "device": "cuda",
+      "batch": 64,
+      "length": 6000,
+      "seconds_per_batch": 0.013682793334980185,
+      "ms_per_window": 0.21379364585906538,
+      "windows_per_second": 4677.4074878689735,
+      "autocast": "fp32"
+    },
+    {
+      "device": "cuda",
+      "batch": 64,
+      "length": 6000,
+      "seconds_per_batch": 0.011700231667297582,
+      "ms_per_window": 0.1828161198015247,
+      "windows_per_second": 5469.977161125918,
+      "autocast": "bf16"
+    },
+    {
+      "device": "cpu",
+      "batch": 1,
+      "length": 6000,
+      "seconds_per_batch": 0.012454165000235662,
+      "ms_per_window": 12.454165000235662,
+      "windows_per_second": 80.29442359090936,
+      "autocast": "fp32"
+    },
+    {
+      "device": "cpu",
+      "batch": 64,
+      "length": 6000,
+      "seconds_per_batch": 0.7957906583324075,
+      "ms_per_window": 12.434229036443867,
+      "windows_per_second": 80.42316070172659,
+      "autocast": "fp32"
+    }
+  ],
+  "torch_version": "2.14.0+cu130",
+  "cpu": "AMD64 Family 26 Model 68 Stepping 0, AuthenticAMD",
+  "cpu_threads": 2,
+  "scope": "Warm synthetic-input forward passes; excludes disk I/O, preprocessing, transfer and alert assembly. Not causal streaming latency.",
+  "precision_scope": "FP32 is the primary summary. BF16 timing alone does not validate BF16 prediction accuracy.",
+  "gpu": "NVIDIA GeForce RTX 5070 Ti",
+  "single_window_ms": 4.184578333903724,
+  "single_record_300s_seconds": 0.10461445834759311,
+  "throughput_windows_per_second": 4677.4074878689735
+}

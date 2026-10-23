@@ -1,0 +1,42 @@
+{
+  "name": "SeisFormer dual-domain P/S, 1M, seed42, detection-selected",
+  "checkpoint": "weights/best_detection.pt",
+  "checkpoint_sha256": "08afa0d899bbc03e5680dff2b49768aacb1ce5fdfe07525d037b1c87e9ff3342",
+  "original_checkpoint": "F:\\model\\model_2\\outputs\\standardized_dual_1m_20ep\\best_detection.pt",
+  "parameters": 428774,
+  "selected_epoch_zero_based": 16,
+  "selected_epoch_human": 17,
+  "optimizer_updates": 278528,
+  "planned_epochs": 20,
+  "train_rows": 1048576,
+  "val_rows": 16384,
+  "initialization": {
+    "checkpoint": "F:\\model\\model_2\\outputs\\standardized_dual_expanded_524k\\best.pt",
+    "sha256": "2a5e23504fba67ae04b16e32d0d1c5dab519a41a4872851147baf764d2675dc9",
+    "mode": "warm_start_weights; fresh optimizer and scheduler"
+  },
+  "model_config": {
+    "dim": 96,
+    "layers": 3,
+    "heads": 4,
+    "wavelet": true,
+    "stft": true,
+    "polarization": false,
+    "gabor": false,
+    "scales": 12,
+    "sample_rate": 100,
+    "mask_input": false
+  },
+  "input": {
+    "shape": "B x 3 x 6000",
+    "sample_rate_hz": 100,
+    "component_order": "ENZ",
+    "normalization": "Shared valid-component RMS after per-component centering; zero invalid samples"
+  },
+  "outputs": [
+    "P dense logits",
+    "S dense logits",
+    "event logit"
+  ],
+  "scope": "Historical internal P/S protocol; not a six-phase model, magnitude model, native-public leaderboard or first-tier certification."
+}
