@@ -117,11 +117,17 @@ The reproduction bundle contains model and data-list identities, cached predicti
     text='\n'.join(cleaned)+'\n'
     for a,b in [('1 M','1M'),('262 k','262k'),('524 k','524k'),('32 k','32k'),('1M','1M'),
                 ('Available1M','Available 1M'),('25 mm','25mm'),('MAE(s)','MAE (s)'),
-                ('Params(M)','Params (M)'),('time(ms)','time (ms)'),('95\\%interval','95\\% interval'),
-                ('nominal90\\%coverage','nominal 90\\% coverage'),('same127,','same 127,'),
-                ('same524k','same 524k'),('same32k','same 32k'),('two threads.','two threads.'),
-                ('timing,6,000sample','timing, 6,000-sample'),('errors$','errors $'),('$are','$ are'),
-                ('With$','With $'),('$records','$ records'),('and$','and $'),('$emitted','$ emitted'),
+                ('Params(M)','Params (M)'),('time(ms)','time (ms)'),('95\\%interval(s)','95\\% interval (s)'),
+                ('95\\%interval','95\\% interval'),('Difference(s)','Difference (s)'),
+                ('radius(s)','radius (s)'),('0local','0 local'),('is0.9','is 0.9'),
+                ('atzero','at zero'),('for,101-sample','for, 101-sample'),('variant,101-sample','variant, 101-sample'),
+                ('mean of$','mean of $'),('sample$n$local','sample $n$ local'),
+                ('In particular,250--1,000','In particular, 250--1,000'),
+                ('10 th--90 th','10th--90th'),('nominal90\\%coverage','nominal 90\\% coverage'),
+                ('same127,','same 127,'),('same524k','same 524k'),('same32k','same 32k'),
+                ('two threads.','two threads.'),('timing,6,000sample','timing, 6,000-sample'),
+                ('errors$','errors $'),('$are','$ are'),('With$','With $'),('$records','$ records'),
+                ('and$','and $'),('$emitted','$ emitted'),
                 ('Official PhaseNet, shared-input FT','PhaseNet, shared-input FT')]:text=text.replace(a,b)
     recent=ROOT/'analysis/recent_dual_supplement.tex'
     if recent.exists():
