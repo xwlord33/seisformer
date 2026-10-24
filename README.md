@@ -74,10 +74,6 @@ python infer.py --input path/to/record.mseed --min-support 5 --output picks.json
 }
 ```
 
-## Funding
-
-Supported by the “Leitai” Action Plan (Guangxi Science and Technology Innovation Platform Program), under the capacity-building initiative for autonomous-region-level science and technology innovation platforms (project agreement No. Guike LT2600640028 / 桂科LT2600640028).
-
 ## License
 
 Released under the [MIT License](LICENSE). Source waveform collections (STEAD, INSTANCE, PNW, TXED, ETHZ, IQUIQUE, GEOFON, CREW, NEIC, CEED) remain subject to their respective data provider licenses.
