@@ -2,7 +2,11 @@
 
 Official open-source implementation, preserved primary model checkpoint, and reproducibility materials for:
 
-> **SeisFormer: compact time–frequency fusion for P- and S-wave arrival picking across multi-source seismic archives**
+> **SeisFormer: compact time–frequency fusion for P- and S-wave arrival picking across multi-source seismic archives**  
+> **Authors:** Wei Xiang$^{1,2,*}$, Jianying Mou$^{1}$  
+> $^{1}$ Guangxi Zhuang Autonomous Region Earthquake Agency, Nanning 530022, China  
+> $^{2}$ Beihai Weizhou Island Marine Geophysics Observation and Research Station of Guangxi, Weizhou Island Earthquake Monitoring Center Station, Beihai 536000, China  
+> $^{*}$ Corresponding author: `xiangwei@gxearthquake.cn` (ORCID: `0009-0001-4572-3507`)
 
 ---
 
@@ -58,6 +62,21 @@ python infer.py --input path/to/record.mseed --min-support 5 --output picks.json
 ```
 
 ---
+
+## Citation
+
+```bibtex
+@article{xiang2026seisformer,
+  title   = {SeisFormer: compact time--frequency fusion for P- and S-wave arrival picking across multi-source seismic archives},
+  author  = {Xiang, Wei and Mou, Jianying},
+  journal = {Computers \& Geosciences},
+  year    = {2026}
+}
+```
+
+## Funding
+
+Supported by the “Leitai” Action Plan (Guangxi Science and Technology Innovation Platform Program), under the capacity-building initiative for autonomous-region-level science and technology innovation platforms (project agreement No. Guike LT2600640028 / 桂科LT2600640028).
 
 ## License
 
