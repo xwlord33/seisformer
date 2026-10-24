@@ -12,9 +12,13 @@ ROOT = Path(__file__).resolve().parents[1] / 'outputs/paper_ps'
 
 HEADINGS = {
     'SeisFormer: compact time–frequency fusion for P- and S-wave arrival picking across seismic networks':
-        'SeisFormer：用于跨台网P、S波到时拾取的紧凑时频融合模型',
+        'XFNet：用于跨台网P、S波到时拾取的紧凑时频融合模型',
     'SeisFormer: compact time–frequency fusion for P- and S-wave arrival picking across multi-source seismic archives':
-        'SeisFormer：用于多来源地震资料库P、S波到时拾取的紧凑时频融合模型',
+        'XFNet：用于多来源地震资料库P、S波到时拾取的紧凑时频融合模型',
+    'XFNet: compact time–frequency fusion for P- and S-wave arrival picking across seismic networks':
+        'XFNet：用于跨台网P、S波到时拾取的紧凑时频融合模型',
+    'XFNet: compact time–frequency fusion for P- and S-wave arrival picking across multi-source seismic archives':
+        'XFNet：用于多来源地震资料库P、S波到时拾取的紧凑时频融合模型',
     'Summary': '摘要', 'Abstract': '摘要', 'Introduction': '引言',
     'Relation to recent phase-picking studies': '与近期震相拾取研究的关系',
     'Waveform data and picking task': '波形资料与拾取任务',
@@ -174,7 +178,7 @@ def run():
     notes = (f'核对说明：本稿与英文主文的{len(paragraphs)}个正文段落逐段对应，保留{expected_equations}组公式、{expected_tables}张表和{expected_figures}张图。'
              f'P001—P{len(paragraphs):03d}用于定位修改；图内英文标注与英文稿共用，参考文献沿用英文条目。'
              '本文的评价对象为P/S家族到时与窗口事件检测。')
-    zh = ['> '+notes]; bilingual = ['# SeisFormer中英逐段核对','> '+notes]
+    zh = ['> '+notes]; bilingual = ['# XFNet中英逐段核对','> '+notes]
     tex = [r'''\documentclass[a4paper,11pt]{article}
 \usepackage{fontspec,xeCJK}
 \setmainfont{Times New Roman}
@@ -194,9 +198,13 @@ def run():
 \renewcommand{\floatpagefraction}{0.75}
 \setlength{\emergencystretch}{3em}
 \linespread{1.15}
-\title{SeisFormer：用于多来源地震资料库P、S波到时拾取的紧凑时频融合模型}
-\author{中文逐段核对版}
-\date{2026年10月22日}
+\title{XFNet：用于多来源地震资料库P、S波到时拾取的紧凑时频融合模型}
+\author{向巍$^{1,2,*}$，牟剑英$^{1}$（中文逐段核对版）\\[2pt]
+\parbox{0.92\textwidth}{\centering\small
+$^1$广西壮族自治区地震局，南宁 530022\\[1pt]
+$^2$广西北海涠洲岛海洋地球物理国家野外科学观测研究站/涠洲岛地震监测中心站，北海 536000\\[1pt]
+$^*$通讯作者：向巍（\texttt{xiangwei@gxearthquake.cn}；ORCID：\texttt{0009-0001-4572-3507}）}}
+\date{2026年10月24日}
 \begin{document}
 \maketitle
 ''',r'{\small\color{gray}'+tex_prose(notes)+r'}\par\medskip']

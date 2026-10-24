@@ -18,8 +18,13 @@ def run():
 \setlength{\tabcolsep}{4.5pt}
 \renewcommand{\thesection}{S\arabic{section}}
 \renewcommand{\thetable}{S\arabic{table}}
-\title{Supplementary data: SeisFormer compact time--frequency phase picking}
-\author{}\date{}
+\title{Supplementary data: XFNet compact time--frequency phase picking}
+\author{Wei Xiang$^{1,2,*}$, Jianying Mou$^{1}$\\[2pt]
+\parbox{0.92\textwidth}{\centering\footnotesize
+$^1$Guangxi Zhuang Autonomous Region Earthquake Agency, Nanning 530022, China\\[1pt]
+$^2$Beihai Weizhou Island Marine Geophysics Observation and Research Station of Guangxi, Beihai 536000, China\\[1pt]
+$^*$Corresponding author: \texttt{xiangwei@gxearthquake.cn}}}
+\date{}
 \begin{document}\maketitle
 \section{Training histories and checkpoint identity}
 All three controlled 262k time-domain/dual-domain pairs use the same time-domain pilot initialization. A seed denotes stochastic fine-tuning from this shared parent, not a fully independent pilot. The primary 1M seed-42 checkpoint has SHA256
@@ -38,12 +43,12 @@ Seed & Completed epochs & Rule & Selected epoch & P MAE(s) & S MAE(s) & Det F1\\
             s.append(f"{seed} & {completed} & {rule} & {r['checkpoint_epoch']+1} & {m['P']['mae_s']:.4f} & {m['S']['mae_s']:.4f} & {m['detection']['0.5']['f1']:.6f} \\")
     s.append(r'''\bottomrule\end{tabular}\end{table}
 \section{Exploratory architecture comparisons}
-The historical shared-tensor comparison trains models on standardized ENZ/shared-RMS inputs and the524k row list, evaluating the same127,940-record test list. The from-scratch U-Net retains twelve complete epoch reports and was stopped during epoch13 of20 planned epochs; its selected checkpoint is epoch12. The official PhaseNet fine-tuning run and SeisFormer each completed20. These budgets and input conventions make the experiments useful shared-recipe checks, but they do not replace a comparison respecting each pretrained model's native normalization and component order. They are reported as exploratory results and do not support a universal method ranking.
+The historical shared-tensor comparison trains models on standardized ENZ/shared-RMS inputs and the524k row list, evaluating the same127,940-record test list. The from-scratch U-Net retains twelve complete epoch reports and was stopped during epoch13 of20 planned epochs; its selected checkpoint is epoch12. The official PhaseNet fine-tuning run and XFNet each completed20. These budgets and input conventions make the experiments useful shared-recipe checks, but they do not replace a comparison respecting each pretrained model's native normalization and component order. They are reported as exploratory results and do not support a universal method ranking.
 \begin{table}[htbp]\centering\small
 \caption{Shared-input exploratory comparisons. Parameters for PhaseNet refer to the official backbone; model-specific fine-tuning and preprocessing need to be considered when interpreting these rows.}
 \begin{tabular}{lrrrrrr}\toprule
 Model & Params(M) & Epochs & P MAE(s) & S MAE(s) & P F1 & S F1\\\midrule''')
-    for label,name,param,ep in (('SeisFormer dual','standardized_dual_expanded_524k',.429,20),('Scratch U-Net','standardized_unet_524k',1.56,12),('Official PhaseNet, shared-input FT','standardized_phasenet_524k',.27,20)):
+    for label,name,param,ep in (('XFNet dual','standardized_dual_expanded_524k',.429,20),('Scratch U-Net','standardized_unet_524k',1.56,12),('Official PhaseNet, shared-input FT','standardized_phasenet_524k',.27,20)):
         r=e['runs'][name]['eval_test']['overall']
         s.append(f"{label} & {param:.3f} & {ep} & {r['P']['mae_s']:.3f} & {r['S']['mae_s']:.3f} & {r['P']['picking_at_0.3']['f1']:.3f} & {r['S']['picking_at_0.3']['f1']:.3f} \\")
     s.append(r'''\bottomrule\end{tabular}\end{table}

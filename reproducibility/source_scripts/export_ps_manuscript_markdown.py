@@ -30,7 +30,7 @@ def clean(s):
         mathematics.append(match[0])
         return 'MATHPLACEHOLDER'+str(len(mathematics)-1)+'END'
     s=re.sub(r'\$\$[\s\S]*?\$\$|\$[^$\n]+\$',save_math,s)
-    s=s.replace('\\model{}','SeisFormer').replace('\\model','SeisFormer')
+    s=s.replace('\\model{}','XFNet').replace('\\model','XFNet')
     s=s.replace('~',' ').replace('\\%','%').replace('\\_','_').replace('\\&','&')
     s=s.replace('---','—').replace('--','–').replace('``','“').replace("''",'”')
     s=re.sub(r'\\(?:\s+|\.)',' ',s)

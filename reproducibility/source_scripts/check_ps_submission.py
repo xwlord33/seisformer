@@ -49,10 +49,11 @@ def run():
     assert len(e['primary_source_calibration'])==16
     assert abs(e['calibration_summary']['global']['mean_absolute_deviation']-.1315612867)<1e-9
     assert abs(e['calibration_summary']['local']['mean_absolute_deviation']-.0167688973)<1e-9
-    # Six-phase result values from the old mixed-task table must not be claimed
-    # as the historical P/S checkpoint's baseline comparison.
-    for old in ('0.819','0.749','1.756','65.4\\%'):
-        if old in tex:raise ValueError('Unexpected obsolete mixed-task statistic: '+old)
+    # Six-phase result values from the old mixed-task table and obsolete 524k
+    # numbers must not be claimed as the historical P/S checkpoint's baseline comparison.
+    for old in ('0.749','1.756','65.4\\%','0.727','0.371','0.871/0.835','0.903/0.873'):
+        if old in tex:raise ValueError('Unexpected obsolete statistic: '+old)
+    assert '1.161/0.584' in tex and '0.819/0.830' in tex and '0.893/0.872' in tex
     if re.search(r'mean\s+(?:absolute\s+)?(?:coverage|source)[^.\n]{0,70}0\.473',tex):raise ValueError('Maximum deviation described as mean')
     alignment=json.loads((ROOT/'analysis/bilingual_alignment.json').read_text(encoding='utf-8'))
     assert alignment['english_master_sha256']==hashlib.sha256(tex.encode()).hexdigest()

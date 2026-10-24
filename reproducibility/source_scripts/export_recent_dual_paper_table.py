@@ -16,7 +16,7 @@ def run():
     def runtime(architecture,device,batch,key):
         return next(r[key] for r in timing if r['architecture']==architecture and r['device']==device and r['batch']==batch)
     rows=[]
-    for architecture,name in [('seisformer','SeisFormer'),('twostream_eqt','TwoStream-EQT')]:
+    for architecture,name in [('seisformer','XFNet'),('twostream_eqt','TwoStream-EQT')]:
         r=summary[architecture]
         rows.append(f"{name} & ${r['P']['mae_s_mean']:.4f}\\pm{r['P']['mae_s_sd']:.4f}$ & ${r['S']['mae_s_mean']:.4f}\\pm{r['S']['mae_s_sd']:.4f}$ & {r['parameters']:,} & {runtime(architecture,'cuda',1,'milliseconds_per_batch'):.2f} & {runtime(architecture,'cuda',64,'windows_per_second'):,.0f} & {runtime(architecture,'cpu',1,'milliseconds_per_batch'):.2f}\\\\")
     table=r'''\begin{table}[tb]
@@ -37,10 +37,10 @@ Model & P MAE (s) & S MAE (s) & Parameters & GPU B1 (ms) & GPU B64 (s$^{-1}$) & 
     seed_rows=[]
     for record in sorted(result['runs'],key=lambda r:(r['architecture'],r['seed'])):
         metrics=record['metrics'];completion=record['completion'];cal=metrics['at_validation_operating_point']
-        name='SeisFormer' if record['architecture']=='seisformer' else 'TwoStream-EQT'
+        name='XFNet' if record['architecture']=='seisformer' else 'TwoStream-EQT'
         seed_rows.append(f"{name} & {record['seed']} & {completion['selected_epoch']} & {metrics['overall']['P']['mae_s']:.4f} & {metrics['overall']['S']['mae_s']:.4f} & {cal['P']['f1']:.4f} & {cal['S']['f1']:.4f}\\\\")
     selection=read(EXPERIMENT/'selected_learning_rates.json');lr_rows=[]
-    for architecture,name in [('seisformer','SeisFormer'),('twostream_eqt','TwoStream-EQT')]:
+    for architecture,name in [('seisformer','XFNet'),('twostream_eqt','TwoStream-EQT')]:
         for r in selection[architecture]['candidates']:
             lr_rows.append(f"{name} & {r['learning_rate']:g} & {r['validation_fp32_mean_ps_mae_s']:.4f}\\\\")
     supplement=r'''
@@ -49,7 +49,7 @@ The reference is the author-linked public CrossTwoStreamEQT configuration associ
 
 Both comparison models start from random weights. They share the exact 262,144 training records, 16,384 validation records and 127,940 test list; per-record crops and batch order are paired by seed and epoch. Training uses batch 512, AdamW, weight decay 0.01, gradient clipping at 1 and cosine decay to one tenth of the initial learning rate. Each model receives the same three-candidate learning-rate search on a 32,768-record training subset and 4,096 validation records, with three epochs per candidate (Table~\ref{tab:recentlr}). Final runs use seeds 42/43/44 and 20 epochs, without inheriting the search weights. Selection minimizes mean P/S validation MAE.
 
-The Gaussian P/S width, peak weighting and validity/unknown masks are shared with the main model. Each architecture retains its native auxiliary detection output: SeisFormer uses window-level BCE; the reference uses dense BCE between P and P+1.4(S-P), with incomplete observed P/S intervals masked and confirmed noise assigned zero. In mixed-precision training, reference LSTM operations use FP32 for numerical stability on the recorded runtime. This preserves the released network and its full-FP32 inference. All final test predictions and efficiency measurements use FP32 with TF32 disabled.
+The Gaussian P/S width, peak weighting and validity/unknown masks are shared with the main model. Each architecture retains its native auxiliary detection output: XFNet uses window-level BCE; the reference uses dense BCE between P and P+1.4(S-P), with incomplete observed P/S intervals masked and confirmed noise assigned zero. In mixed-precision training, reference LSTM operations use FP32 for numerical stability on the recorded runtime. This preserves the released network and its full-FP32 inference. All final test predictions and efficiency measurements use FP32 with TF32 disabled.
 
 The operating point in Table~\ref{tab:recentseeds} uses the same 1 per cent validation-noise budget. Phase thresholds are selected on validation only; unconditional arrival MAE retains every known target. A wrong accepted pick counts as both FP and FN. The complete fixed-threshold, source-wise results and predictions accompany the reproduction data. All six completed training histories and selected checkpoints were verified before test evaluation. The original 1M historical model remains a separate training sequence.
 
