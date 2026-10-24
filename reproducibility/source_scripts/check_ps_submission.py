@@ -21,12 +21,12 @@ def run():
     labels=re.findall(r'\\label\{([^}]+)\}',tex);refs=re.findall(r'\\ref\{([^}]+)\}',tex)
     assert len(set(labels))==len(labels);assert set(refs)<=set(labels)
     pdfs={};environment_warnings={}
-    for name in ('SeisFormer_manuscript_v7','SeisFormer_supplement_v7','中文核对版_v7'):
+    for name in ('XFNet_manuscript','XFNet_supplement','中文核对版'):
         log=(ROOT/(name+'.log')).read_text(encoding='utf-8',errors='replace')
         warnings=[line for line in log.splitlines() if any(v in line for v in ('Overfull','undefined','Missing character','LaTeX Warning:','Package natbib Warning:'))]
         # The installed xeCJK requests a newer LaTeX release. Compilation and
         # glyph rendering succeed; retain this environment warning explicitly.
-        allowed=[line for line in warnings if name=='中文核对版_v7' and line=="LaTeX Warning: You have requested release `2026/06/01' of LaTeX,"]
+        allowed=[line for line in warnings if name=='中文核对版' and line=="LaTeX Warning: You have requested release `2026/06/01' of LaTeX,"]
         environment_warnings[name]=allowed
         errors=[line for line in warnings if line not in allowed]
         if errors:raise ValueError('\n'.join(errors))
@@ -61,7 +61,7 @@ def run():
     assert len(alignment['paragraphs'])==sum(u['kind']=='paragraph' for u in units)
     assert alignment['tables']==len(re.findall(r'\\begin\{table\}',tex))
     assert alignment['figures']==len(re.findall(r'\\begin\{figure\}',tex)) and alignment['equations']==3
-    zhtxt='\n'.join(p.get_text() for p in fitz.open(ROOT/'中文核对版_v7.pdf'))
+    zhtxt='\n'.join(p.get_text() for p in fitz.open(ROOT/'中文核对版.pdf'))
     assert all(p['id'] in zhtxt for p in alignment['paragraphs'])
     assert '0.9988' in zhtxt and '428,774' in zhtxt
     assert len(re.findall(r'\\begin\{table\}',tex))==5
@@ -72,7 +72,7 @@ def run():
     assert len(re.findall(r'\\begin\{table\}',supporting))==8
     for label in ('tab:external','fig:external','fig:waveforms'):
         assert r'\label{'+label+'}' not in tex+supporting
-    for name in ('SeisFormer_manuscript_v7','SeisFormer_supplement_v7','中文核对版_v7'):
+    for name in ('XFNet_manuscript','XFNet_supplement','中文核对版'):
         content='\n'.join(p.get_text() for p in fitz.open(ROOT/(name+'.pdf')))
         assert not any(v in content.lower() for v in ('competition','竞赛','1,590.65','1,625.68','1,000-record','test2000'))
     examples=json.loads((ROOT/'analysis/heldout_waveform_selection.json').read_text(encoding='utf-8'))

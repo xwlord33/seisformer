@@ -37,7 +37,7 @@ def run():
         shutil.copy2(PROJECT/'scripts'/(name+'.py'),snapshots/(name+'.py'))
     files=[]
     for name in ('main.tex','supplement.tex','chinese_review.tex','refs.bib',
-                 'SeisFormer_manuscript_v7.pdf','SeisFormer_supplement_v7.pdf','中文核对版_v7.pdf',
+                 'XFNet_manuscript.pdf','XFNet_supplement.pdf','中文核对版.pdf',
                  'MANUSCRIPT_EN.md','HIGHLIGHTS.md','中文核对版.md','中英逐段对照.md','README.md',
                  'COVER_LETTER_GJI.md','COVER_LETTER_CG.md','修改说明_GJI.md',
                  '投稿信息待填写.md','选刊与论文定位.md',
@@ -48,8 +48,7 @@ def run():
                  'analysis/heldout_waveform_selection.json','analysis/heldout_waveform_data.npz',
                  'analysis/review_units.json','analysis/review_translation_zh.json',
                  'analysis/bilingual_alignment.json','analysis/build_logs/compilation.json',
-                 'analysis/review_labels_zh.json','analysis/review_v7_overrides_zh.json',
-                 '测试资料与波形示例修订_v7.md',
+                 'analysis/review_labels_zh.json',
                  'analysis/recent_dual_table.tex','analysis/recent_dual_supplement.tex','analysis/recent_dual_export.json'):
         files.append(ROOT/name)
     main=(ROOT/'main.tex').read_text(encoding='utf-8')
@@ -63,14 +62,14 @@ def run():
                  if p.suffix in ('.json','.md','.txt'))
     files=sorted(set(files),key=lambda p:p.relative_to(ROOT).as_posix())
     records=[dict(path=p.relative_to(ROOT).as_posix(),bytes=p.stat().st_size,sha256=sha(p)) for p in files]
-    manifest=dict(version_date='2026-10-23',manuscript_revision='v7-cg-ready',
+    manifest=dict(version_date='2026-10-24',manuscript_revision='cg-ready',
                   target_journal='Computers & Geosciences',
                   alternative_journal='Geophysical Journal International',
-                  purpose='Local manuscript/reproduction materials; no external submission or publication performed',
+                  purpose='Manuscript and reproduction materials',
                   files=records,primary_model_sha256=check['primary_weight_sha256'])
-    manifest_path=ROOT/'SeisFormer_source_manifest_v7.json'
+    manifest_path=ROOT/'XFNet_source_manifest.json'
     manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    target=ROOT/'SeisFormer_submission_materials_v7_20261022.zip'
+    target=ROOT/'XFNet_submission_materials.zip'
     temporary=target.with_suffix('.tmp.zip')
     with zipfile.ZipFile(temporary,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
         for p in files+[manifest_path]: archive.write(p,p.relative_to(ROOT).as_posix())
@@ -81,10 +80,10 @@ def run():
     temporary.replace(target)
     cg_files=sorted(set([
         ROOT/'main.tex', ROOT/'supplement.tex', ROOT/'refs.bib',
-        ROOT/'SeisFormer_manuscript_v7.pdf', ROOT/'SeisFormer_supplement_v7.pdf',
+        ROOT/'XFNet_manuscript.pdf', ROOT/'XFNet_supplement.pdf',
         ROOT/'HIGHLIGHTS.md', ROOT/'COVER_LETTER_CG.md',
     ] + figure_files), key=lambda p:p.relative_to(ROOT).as_posix())
-    cg_target=ROOT/'SeisFormer_CG_submission_upload_v7.zip'
+    cg_target=ROOT/'XFNet_CG_submission_upload.zip'
     cg_tmp=cg_target.with_suffix('.tmp.zip')
     with zipfile.ZipFile(cg_tmp,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as archive:
         for p in cg_files: archive.write(p,p.relative_to(ROOT).as_posix())

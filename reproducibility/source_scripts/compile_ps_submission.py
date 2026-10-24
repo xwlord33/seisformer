@@ -11,7 +11,7 @@ def run(only=None):
     out=ROOT/'analysis/build_logs';out.mkdir(exist_ok=True)
     previous=out/'compilation.json'
     reports=[r for r in json.loads(previous.read_text(encoding='utf-8')) if r['source']!=only] if only and previous.exists() else []
-    for source,job,bibliography,engine in [('main.tex','SeisFormer_manuscript_v7',True,'pdflatex'),('supplement.tex','SeisFormer_supplement_v7',False,'pdflatex'),('chinese_review.tex','中文核对版_v7',False,'xelatex')]:
+    for source,job,bibliography,engine in [('main.tex','XFNet_manuscript',True,'pdflatex'),('supplement.tex','XFNet_supplement',False,'pdflatex'),('chinese_review.tex','中文核对版',False,'xelatex')]:
         if only and source!=only:continue
         commands=[[engine,'-interaction=nonstopmode','-halt-on-error','-synctex=1','-jobname='+job,source]]
         if bibliography:commands.append(['bibtex',job])
